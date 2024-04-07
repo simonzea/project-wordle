@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EnterGuess() {
+function EnterGuess({addWord}) {
 let [guess, setGuess] = React.useState('');
 
   function isString(string) {
@@ -14,6 +14,7 @@ let [guess, setGuess] = React.useState('');
   function OnSubmit(event) {
     event.preventDefault();
     console.log(guess);
+    addWord({guess, id: Math.random()});
     setGuess('');
   }
 
