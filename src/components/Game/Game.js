@@ -4,6 +4,8 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import  EnterGuess from '../EnterGuess';
 import GuessResult from '../GuessResult';
+import { checkGuess } from '../../game-helpers';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
 
 // Pick a random word on every pageload.
@@ -15,7 +17,9 @@ function Game() {
   let [guessWords , setGuessWords] = React.useState([]);
 
   function addWord(word) {
-    let newGuessWords = [...guessWords, word];
+    if(guessWords.length >= NUM_OF_GUESSES_ALLOWED)return;
+    let checkedWord = checkGuess(word.guess,answer);
+    let newGuessWords = [...guessWords, {checkedWord, id: Math.random()}];
     setGuessWords(newGuessWords);
   }
 

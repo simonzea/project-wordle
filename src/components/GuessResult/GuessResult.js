@@ -6,9 +6,9 @@ import { range } from '../../utils';
 function GuessResult({guessWords}) {
   return (
   <div className="guess-results">
-    {guessWords.map(({guess, id}) => (
-    <p key={id} className="guess">{guess.split('').map((letter,index) => (
-      <span key={index} className="cell">{letter}</span>))}
+    {guessWords.map(({checkedWord, id}) => (
+    <p key={id} className="guess">{checkedWord.map(({letter, status},index) => (
+      <span key={index} className={`cell ${status}`}>{letter}</span>))}
     </p>
     ))}
 
